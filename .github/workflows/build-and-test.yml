@@ -4,10 +4,31 @@ on:
   push:
     branches: [ "main", "rel-*" ]
 
-env:
-  NAME: World
+  env:
+    NAME: World
 
-jobs:
+  jobs:
+
+    test:
+
+      runs-on: ubuntu-22.04
+
+      timeout-minutes: 10
+
+      needs: build
+
+
+      env:
+        NAME: Planet
+      
+
+      steps:
+
+        - name: Step inside test job
+          run: echo "Hello $NAME"
+
+        - name: Another step
+          run: echo "This is another step in the same job"
 
   build:
 
@@ -23,25 +44,5 @@ jobs:
       - name: Another step
         run: echo "This is another step in the same job"
 
-  test:
-
-    runs-on: ubuntu-22.04
-
-    timeout-minutes: 10
-
-    needs: build
-
-
-    env:
-      NAME: Planet
-    
-
-    steps:
-
-      - name: Step inside test job
-        run: echo "Hello $NAME"
-
-      - name: Another step
-        run: echo "This is another step in the same job"
 
 
