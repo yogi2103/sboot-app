@@ -29,8 +29,12 @@ jobs:
 
     timeout-minutes: 10
 
+    needs: build
+
+
     env:
       NAME: Planet
+    
 
     steps:
 
